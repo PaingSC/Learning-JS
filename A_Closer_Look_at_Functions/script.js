@@ -24,4 +24,18 @@ console.log(str1);
 const str2 = transformWord(str, upperFirstWord);
 console.log(str2);
 // ------------------------------------------------------
+
 // ------------------------------------------------------
+// Functions returning functions
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting}, ${name}!`);
+//   };
+// };
+const greet = (greeting) => (name) => console.log(`${greeting}, ${name}!`); // Same as the code above commented!
+
+const greeter = greet("Hey");
+console.log(greeter);
+
+greeter("Paing");
+greet("Hello")("Thae");
