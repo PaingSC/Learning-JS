@@ -83,3 +83,38 @@ const flightData = [358, "Win Oo"];
 book.apply(eurowings, flightData); //The apply method accept the second argument as array
 
 book.call(eurowings, ...flightData); // Same as the above apply method
+// ------------------------------------------------------
+
+// ------------------------------------------------------
+// the bind() method of functions
+// book.call(eurowings, 27, "Thae Lay");
+
+const bookEW = book.bind(eurowings);
+bookEW(27, "Thae Lay");
+const bookEW27 = book.bind(eurowings, 27);
+bookEW27("Ma Mya Win");
+
+// bind() method with event listener
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+// lufthansa.buyPlane();
+// console.log(lufthansa.plane);
+document
+  .querySelector("body")
+  .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+
+// Partial application (pre-setting arguments);
+const addTXT = (rate, value) => value + value * rate;
+console.log(addTXT(0.1, 300));
+
+const addVAT = addTXT.bind(null, 0.25); // 'null' for skipping 'this'
+console.log(addVAT(300));
+
+// Code Challenge
+const addVatCom = (rate) => (value) => console.log(value + value * rate);
+const addVat25 = addVatCom(0.25);
+addVat25(300);
