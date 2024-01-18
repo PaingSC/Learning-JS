@@ -212,3 +212,15 @@ const totalDepositedUsd = movements
   .reduce((acc, mov) => acc + mov, 0);
 
 console.log(totalDepositedUsd);
+
+// method: find
+// unmutable
+// find() method return only the first element that satstify the callback function
+const firstWithdraw = movements.find(mov => mov < 0);
+console.log(`firstWithdraw: ${Math.abs(firstWithdraw)}.`);
+
+// method: find
+// unmutable
+// find() method return the index of the first element that satstify the callback function
+const firstWithdrawIndex = movements.findIndex(mov => mov < 0);
+console.log(`firstWithdrawIndex: ${firstWithdrawIndex}.`);
