@@ -160,3 +160,55 @@ movements.forEach((mov, i, arr) => {
   else console.log(`Movment ${i + 1}: You withdrew ${Math.abs(mov)}.`);
   console.log();
 });
+
+// method: map
+// immutable
+const euroToUsd = 1.1;
+const movmentsUSD = movements.map(mov => mov * euroToUsd);
+console.log(movements);
+console.log(movmentsUSD);
+
+let movementsUSDfor = [];
+for (const mov of movements) {
+  movementsUSDfor.push(mov * euroToUsd);
+}
+console.log(movementsUSDfor);
+
+const movementsDetails = movements.map((mov, i) => {
+  return `Movement ${i + 1}: You ${
+    mov > 0 ? 'deposited' : 'withdrew'
+  }: ${Math.abs(mov)}.`;
+});
+console.log(movementsDetails);
+
+// method: filter
+// immutable
+
+const withdrewFilter = movements.filter(mov => mov < 0);
+console.log(withdrewFilter);
+
+// with for-of
+let withdrewFilterForof = [];
+for (const mov of movements) if (mov < 0) withdrewFilterForof.push(mov);
+
+// method: reduce
+// immutable
+const globalBalance = movements.reduce((acc, cur, i) => {
+  console.log(`Iteration ${i}: ${acc}.`);
+  return acc + cur;
+}, 0);
+console.log(globalBalance);
+
+// with for-of
+let globalBalanceForof = 0;
+for (const cur of movements) globalBalanceForof += cur;
+console.log(globalBalanceForof);
+
+// Chaining all methods
+const eurToUsd = 1.1;
+const totalDepositedUsd = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(totalDepositedUsd);
